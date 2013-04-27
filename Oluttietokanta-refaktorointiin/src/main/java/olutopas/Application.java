@@ -1,9 +1,13 @@
 package olutopas;
 
 import com.avaje.ebean.EbeanServer;
+import database.Datamapper;
+import database.EbeanSqliteDatamapper;
 import java.util.List;
 import java.util.Scanner;
 import javax.persistence.OptimisticLockException;
+import komento.Komento;
+import komento.Komentotehdas;
 import olutopas.model.Beer;
 import olutopas.model.Brewery;
 import olutopas.model.Rating;
@@ -11,12 +15,18 @@ import olutopas.model.User;
 
 public class Application {
 
+    
+    private Komentotehdas komennot;
     private EbeanServer server;
     private Scanner scanner = new Scanner(System.in);
     private User user;
 
     public Application(EbeanServer server) {
         this.server = server;
+    }
+    public Application(Datamapper mapper) {
+        this.server = ((EbeanSqliteDatamapper)mapper).getServer();
+        this.komennot = new Komentotehdas(mapper);
     }
 
     public void run(boolean newDatabase) {
@@ -32,23 +42,30 @@ public class Application {
             menu();
             System.out.print("> ");
             String command = scanner.nextLine();
-
+                
+            Komento komento = komennot.hae(command);
+    
+            if(komento!=null) {
+                komento.suorita();
+                continue;
+            }
+            
             if (command.equals("q")) {
                 break;
             } else if (command.equals("1")) {
-                findBrewery();
+//                findBrewery();
             } else if (command.equals("2")) {
                 findBeer();
             } else if (command.equals("3")) {
                 addBeer();
             } else if (command.equals("4")) {
                 listBreweries();
-            } else if (command.equals("5")) {
-                deleteBeer();
+//            } else if (command.equals("5")) {
+//                deleteBeer();
             } else if (command.equals("6")) {
                 listBeers();
-            } else if (command.equals("7")) {
-                deleteBrewery();
+//            } else if (command.equals("7")) {
+//                deleteBrewery();
             } else if (command.equals("8")) {
                 addBrewery();
             } else if (command.equals("9")) {
@@ -72,10 +89,10 @@ public class Application {
         System.out.println("2   find/rate beer");
         System.out.println("3   add beer");
         System.out.println("4   list breweries");
-        System.out.println("5   delete beer");
+//        System.out.println("5   delete beer");
         //
         System.out.println("6   list beers");
-        System.out.println("7   delete brewery");
+//        System.out.println("7   delete brewery");
         System.out.println("8   add brewery");
         //
         
@@ -136,21 +153,21 @@ public class Application {
         }
     }
 
-    private void findBrewery() {
-        System.out.print("brewery to find: ");
-        String n = scanner.nextLine();
-        Brewery foundBrewery = server.find(Brewery.class).where().like("name", n).findUnique();
-
-        if (foundBrewery == null) {
-            System.out.println(n + " not found");
-            return;
-        }
-
-        System.out.println(foundBrewery);
-        for (Beer bier : foundBrewery.getBeers()) {
-            System.out.println("   " + bier.getName());
-        }
-    }
+//    private void findBrewery() {
+//        System.out.print("brewery to find: ");
+//        String n = scanner.nextLine();
+//        Brewery foundBrewery = server.find(Brewery.class).where().like("name", n).findUnique();
+//
+//        if (foundBrewery == null) {
+//            System.out.println(n + " not found");
+//            return;
+//        }
+//
+//        System.out.println(foundBrewery);
+//        for (Beer bier : foundBrewery.getBeers()) {
+//            System.out.println("   " + bier.getName());
+//        }
+//    }
 
     private void listBreweries() {
         List<Brewery> breweries = server.find(Brewery.class).findList();
@@ -184,20 +201,20 @@ public class Application {
         System.out.println(name + " added to " + brewery.getName());
     }
 
-    private void deleteBeer() {
-        System.out.print("beer to delete: ");
-        String n = scanner.nextLine();
-        Beer beerToDelete = server.find(Beer.class).where().like("name", n).findUnique();
-
-        if (beerToDelete == null) {
-            System.out.println(n + " not found");
-            return;
-        }
-
-        server.delete(beerToDelete);
-        System.out.println("deleted: " + beerToDelete);
-
-    }
+//    private void deleteBeer() {
+//        System.out.print("beer to delete: ");
+//        String n = scanner.nextLine();
+//        Beer beerToDelete = server.find(Beer.class).where().like("name", n).findUnique();
+//
+//        if (beerToDelete == null) {
+//            System.out.println(n + " not found");
+//            return;
+//        }
+//
+//        server.delete(beerToDelete);
+//        System.out.println("deleted: " + beerToDelete);
+//
+//    }
 
     private void listBeers() {
         List<Beer> beers = server.find(Beer.class).orderBy("brewery.name").findList();
@@ -211,20 +228,20 @@ public class Application {
         }
     }
 
-    private void deleteBrewery() {
-        System.out.print("to which brewery: ");
-        String name = scanner.nextLine();
-        Brewery brewery = server.find(Brewery.class).where().like("name", name).findUnique();
-
-        if (brewery == null) {
-            System.out.println(name + " does not exist");
-            return;
-        }
-
-        server.delete(brewery);
-
-        System.out.println("deleted: " + name);
-    }
+//    private void deleteBrewery() {
+//        System.out.print("to which brewery: ");
+//        String name = scanner.nextLine();
+//        Brewery brewery = server.find(Brewery.class).where().like("name", name).findUnique();
+//
+//        if (brewery == null) {
+//            System.out.println(name + " does not exist");
+//            return;
+//        }
+//
+//        server.delete(brewery);
+//
+//        System.out.println("deleted: " + name);
+//    }
 
     private void addBrewery() {
         System.out.print("brewery to add: ");
