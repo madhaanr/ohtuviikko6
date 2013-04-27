@@ -11,7 +11,13 @@ public class Komentotehdas {
     
     public Komentotehdas(Datamapper mapper) {
         komennot.put("1",new FindBrewery(mapper));
-        
+        komennot.put("2",new FindBeer(mapper));
+        komennot.put("3",new AddBeer(mapper));
+        komennot.put("4",new ListBreweries(mapper));
+        komennot.put("5",new ListBeers(mapper));
+        komennot.put("6",new AddBrewery(mapper));
+        komennot.put("7",new ListRatings(mapper));
+        komennot.put("8",new ListUsers(mapper));
     }
 
     public Komento hae(String command) {

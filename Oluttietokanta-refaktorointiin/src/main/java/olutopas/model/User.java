@@ -9,8 +9,11 @@ import javax.persistence.OneToMany;
 @Entity
 public class User {
 
+    @Id
+    Integer id;
+    
     private String name;
-
+    
     public User() {
     }
 
@@ -18,7 +21,7 @@ public class User {
         this.name = name;
     }
     
-    @OneToMany(cascade= CascadeType.ALL)
+    @OneToMany()
     private List<Rating> ratings;
 
     public List<Rating> getRatings() {
@@ -28,10 +31,7 @@ public class User {
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
-    
-    @Id
-    Integer id;
-    
+  
     public String getName() {
         return name;
     }
@@ -47,5 +47,7 @@ public class User {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+    public String toString() {
+        return name+"";
+    }
 }

@@ -4,7 +4,10 @@
  */
 package database;
 
+import java.util.List;
+import olutopas.model.Beer;
 import olutopas.model.Brewery;
+import olutopas.model.Rating;
 import olutopas.model.User;
 
 /**
@@ -12,7 +15,15 @@ import olutopas.model.User;
  * @author mhaanran
  */
 public interface Datamapper {
-    public Brewery brewerywithName(String n);
+    Brewery brewerywithName(String n);
+    void addBeer(Brewery b);
+    Beer findBeer(String n);
+    List listBreweries();
+    List listBeers();
+    void addBrewery(Brewery b);
+    void addRating(Rating r);
+    List findUsers();
+    User userExists(String n);
     User getCurrentUser();
     void setCurrentUser(User user);
 }
