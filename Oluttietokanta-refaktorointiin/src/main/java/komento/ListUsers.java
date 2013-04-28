@@ -2,7 +2,7 @@ package komento;
 
 import database.Datamapper;
 import java.util.List;
-import olutopas.model.User;
+import model.User;
 
 /* @author mhaanran */
 public class ListUsers implements Komento {

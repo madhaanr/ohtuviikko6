@@ -9,9 +9,9 @@ import javax.persistence.OptimisticLockException;
 import komento.Komento;
 import komento.Komentotehdas;
 import komento.Login;
-import olutopas.model.Beer;
-import olutopas.model.Brewery;
-import olutopas.model.User;
+import model.Beer;
+import model.Brewery;
+import model.User;
 
 public class Application {
 
@@ -22,9 +22,9 @@ public class Application {
     private User user;
     private Datamapper mapper;
 
-    public Application(EbeanServer server) {
-        this.server = server;
-    }
+//    public Application(EbeanServer server) {
+//        this.server = server;
+//    }
     public Application(Datamapper mapper) {
         this.server = ((EbeanSqliteDatamapper)mapper).getServer();
         this.komennot = new Komentotehdas(mapper);
@@ -34,8 +34,9 @@ public class Application {
         if (newDatabase) {
             seedDatabase();
         }
-
+ 
         Login login = new Login(mapper);
+        
         user=login.suorita();
 //        login();
         
@@ -55,26 +56,6 @@ public class Application {
             
             if (command.equals("9")) {
                 break;
-            } else if (command.equals("1")) {
-//                findBrewery();
-            } else if (command.equals("2")) {
-//                findBeer();
-            } else if (command.equals("3")) {
-//                addBeer();
-            } else if (command.equals("4")) {
-//                listBreweries();
-//            } else if (command.equals("5")) {
-//                deleteBeer();
-            } else if (command.equals("5")) {
-//                listBeers();
-//            } else if (command.equals("7")) {
-//                deleteBrewery();
-            } else if (command.equals("6")) {
-//                addBrewery();
-            } else if (command.equals("7")) {
-//                myRatings();
-            } else if (command.equals("8")) {
-//                listUsers();
             } else {
                 System.out.println("unknown command");
             }

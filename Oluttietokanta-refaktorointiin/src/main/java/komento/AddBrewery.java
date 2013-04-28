@@ -2,7 +2,7 @@ package komento;
 
 import database.Datamapper;
 import java.util.Scanner;
-import olutopas.model.Brewery;
+import model.Brewery;
 
 /* @author mhaanran */
 public class AddBrewery implements Komento {

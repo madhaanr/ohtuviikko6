@@ -1,9 +1,8 @@
 package komento;
 
 import database.Datamapper;
-import java.util.List;
 import java.util.Scanner;
-import olutopas.model.User;
+import model.User;
 
 /* @author mhaanran */
 public class Login {
@@ -11,6 +10,7 @@ public class Login {
     private Scanner scanner = new Scanner(System.in);
     private Datamapper datamapper;
     private User user;
+
 
     public Login(Datamapper datamapper) {
         this.datamapper=datamapper;
@@ -29,9 +29,9 @@ public class Login {
                 continue;
             }
             user = new User(name);
-            
+           
             if (user != null) {
-//                datamapper.setCurrentUser(user);
+                datamapper.setCurrentUser(user);
                 break;
             }
             System.out.println("unknown user");
@@ -44,14 +44,15 @@ public class Login {
         System.out.print("give username: ");
         String name = scanner.nextLine();
         
-//        User exists = datamapper.userExists(name);
-//        
-//        if (exists != null) {   
-//            System.out.println(name + " exists already");
-//            return;            
-//        }
+        User exists = datamapper.userExists(name);
         
-        datamapper.setCurrentUser(new User(name));
+        if (exists != null) {   
+            System.out.println(name + " exists already");
+            return;            
+        }
+        datamapper.createUser(name);
+        user = new User(name);
+        datamapper.setCurrentUser(user);
         System.out.println("user created!\n");
     }
 

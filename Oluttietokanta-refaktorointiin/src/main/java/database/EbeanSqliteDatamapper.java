@@ -7,10 +7,10 @@ import com.avaje.ebean.config.DataSourceConfig;
 import com.avaje.ebean.config.ServerConfig;
 import com.avaje.ebean.config.dbplatform.SQLitePlatform;
 import java.util.List;
-import olutopas.model.Beer;
-import olutopas.model.Brewery;
-import olutopas.model.Rating;
-import olutopas.model.User;
+import model.Beer;
+import model.Brewery;
+import model.Rating;
+import model.User;
 
 /* @author mhaanran */
 public class EbeanSqliteDatamapper implements Datamapper {
@@ -44,20 +44,6 @@ public class EbeanSqliteDatamapper implements Datamapper {
         config.setDataSourceConfig(sqLite);
         config.setDatabasePlatform(new SQLitePlatform());
         config.getDataSourceConfig().setIsolationLevel(Transaction.READ_UNCOMMITTED);
-        
-//        config.setDefaultServer(false);
-//        config.setRegister(false);
-
-//        config.addClass(Beer.class);
-//        config.addClass(Brewery.class);
-//        config.addClass(User.class);
-//        config.addClass(Rating.class);
-
-//        if (dropAndCreate) {
-//            config.setDdlGenerate(true);
-//            config.setDdlRun(true);
-//            //config.setDebugSql(true);
-//        }
           
         server = EbeanServerFactory.create(config);
     }
@@ -91,14 +77,16 @@ public class EbeanSqliteDatamapper implements Datamapper {
         return currentUser;
     }
     @Override
-    public void setCurrentUser(User user) {   
-        server.save(user);
-        currentUser=user;
+    public void setCurrentUser(User user) {  
+        currentUser = user;
     }
     @Override
-    public User userExists(String n) {
-        User user = server.find(User.class).where().like("name", n).findUnique();
-        return user;
+    public void createUser(String name) {
+        server.save(new User(name));
+    }
+    @Override
+    public User userExists(String n) {    
+        return server.find(User.class).where().like("name", n).findUnique();
     }  
     // muut metodit
    

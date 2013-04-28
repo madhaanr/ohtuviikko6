@@ -2,7 +2,7 @@ package komento;
 
 import database.Datamapper;
 import java.util.List;
-import olutopas.model.Brewery;
+import model.Brewery;
 
 /* @author mhaanran */
 public class ListBreweries implements Komento{

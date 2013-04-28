@@ -2,8 +2,8 @@ package komento;
 
 import database.Datamapper;
 import java.util.Scanner;
-import olutopas.model.Beer;
-import olutopas.model.Brewery;
+import model.Beer;
+import model.Brewery;
 
 /* @author mhaanran */
 public class AddBeer implements Komento {

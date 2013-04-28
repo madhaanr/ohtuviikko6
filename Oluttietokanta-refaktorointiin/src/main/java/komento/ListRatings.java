@@ -1,8 +1,8 @@
 package komento;
 
 import database.Datamapper;
-import olutopas.model.Rating;
-import olutopas.model.User;
+import model.Rating;
+import model.User;
 
 /* @author mhaanran */
 public class ListRatings implements Komento{

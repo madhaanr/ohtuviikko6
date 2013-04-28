@@ -1,4 +1,4 @@
-package olutopas.model;
+package model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,13 +7,13 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Rating {
     @Id
-    Integer id;
+    private Integer id;
 
     @ManyToOne
-    Beer beer;
+    private Beer beer;
 
     @ManyToOne
-    User user;
+    private User user;
 
     public Rating() {
     }   
@@ -52,7 +52,7 @@ public class Rating {
         this.points = points;
     }
 
-    public Rating( Beer beer, User user, int points) {
+    public Rating(Beer beer, User user, int points) {
         this.beer = beer;
         this.user = user;
         this.points = points;

@@ -1,4 +1,4 @@
-package olutopas.model;
+package model;
 
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -21,7 +21,7 @@ public class User {
         this.name = name;
     }
     
-    @OneToMany()
+    @OneToMany(cascade= CascadeType.ALL)
     private List<Rating> ratings;
 
     public List<Rating> getRatings() {

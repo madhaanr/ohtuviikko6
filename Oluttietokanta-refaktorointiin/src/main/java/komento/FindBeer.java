@@ -2,9 +2,9 @@ package komento;
 
 import database.Datamapper;
 import java.util.Scanner;
-import olutopas.model.Beer;
-import olutopas.model.Rating;
-import olutopas.model.User;
+import model.Beer;
+import model.Rating;
+import model.User;
 
 /* @author mhaanran */
 public class FindBeer implements Komento {
@@ -16,6 +16,7 @@ public class FindBeer implements Komento {
         this.datamapper=datamapper;
     }
     
+    @Override
     public void suorita() {
         System.out.print("beer to find: ");
         String name = scanner.nextLine();
@@ -28,7 +29,7 @@ public class FindBeer implements Komento {
 
         System.out.println(foundBeer);
 
-        if (foundBeer.getRatings() != null && foundBeer.getRatings().isEmpty()) {
+        if (foundBeer.getRatings() != null && foundBeer.getRatings().size()!=0) {
             System.out.println("  number of ratings: " + foundBeer.getRatings().size() + " average " + foundBeer.averageRating());
         } else {
             System.out.println(" no ratings ");
