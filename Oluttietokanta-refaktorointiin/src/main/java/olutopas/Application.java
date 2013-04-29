@@ -26,19 +26,18 @@ public class Application {
 //        this.server = server;
 //    }
     public Application(Datamapper mapper) {
+        this.mapper=mapper;
         this.server = ((EbeanSqliteDatamapper)mapper).getServer();
         this.komennot = new Komentotehdas(mapper);
     }
 
     public void run(boolean newDatabase) {
         if (newDatabase) {
-            seedDatabase();
+            seedDatabase();                  
         }
- 
-        Login login = new Login(mapper);
         
+        Login login = new Login(mapper);        
         user=login.suorita();
-//        login();
         
         System.out.println("\nWelcome to Ratebeer " + user.getName());
 
@@ -152,10 +151,10 @@ public class Application {
 //        }
 //    }
 
-    private void listUsers() {
-        List<User> users = server.find(User.class).findList();
-        for (User user : users) {
-            System.out.println(user.getName() + " " + user.getRatings().size() + " ratings");
-        }
-    }
+//    private void listUsers() {
+//        List<User> users = server.find(User.class).findList();
+//        for (User user : users) {
+//            System.out.println(user.getName() + " " + user.getRatings().size() + " ratings");
+//        }
+//    }
 }

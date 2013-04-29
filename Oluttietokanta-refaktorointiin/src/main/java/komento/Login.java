@@ -1,6 +1,7 @@
 package komento;
 
 import database.Datamapper;
+import java.util.List;
 import java.util.Scanner;
 import model.User;
 
@@ -17,6 +18,7 @@ public class Login {
     }
     
     public User suorita() {
+       
         while (true) {
             
             System.out.println("\nLogin (give ? to register a new user)\n");
@@ -29,8 +31,8 @@ public class Login {
                 continue;
             }
             user = new User(name);
-           
-            if (user != null) {
+            
+            if (user != null && datamapper.userExists(name)!=null) {
                 datamapper.setCurrentUser(user);
                 break;
             }
@@ -56,4 +58,13 @@ public class Login {
         System.out.println("user created!\n");
     }
 
+    public boolean userExists() {
+        List<User> users = datamapper.findUsers();
+        for (User user1 : users) {
+            if (user1.getName().equals(user.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -9,5 +9,5 @@ package komento;
  * @author mhaanran
  */
 public interface Komento {
-    public abstract void suorita();
+    abstract void suorita();
 }

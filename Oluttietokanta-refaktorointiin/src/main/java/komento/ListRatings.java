@@ -1,6 +1,7 @@
 package komento;
 
 import database.Datamapper;
+import java.util.List;
 import model.Rating;
 import model.User;
 
@@ -18,7 +19,7 @@ public class ListRatings implements Komento{
         User user = datamapper.getCurrentUser();
         System.out.println("Ratings by " + user.getName());
         for (Rating rating : user.getRatings()) {
-            System.out.println(rating);
+            System.out.println(rating);             
         }
     }
 

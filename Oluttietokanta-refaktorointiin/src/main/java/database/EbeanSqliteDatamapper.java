@@ -23,7 +23,7 @@ public class EbeanSqliteDatamapper implements Datamapper {
     public EbeanSqliteDatamapper(String tietokantaUrl ,boolean dropAndCreate, Class... luokat) {
         this.luokat = luokat;
         this.dropAndCreate = dropAndCreate;
-        this.tietokantaUrl = tietokantaUrl;
+        this.tietokantaUrl = tietokantaUrl;      
         init();
     }
 
@@ -78,7 +78,9 @@ public class EbeanSqliteDatamapper implements Datamapper {
     }
     @Override
     public void setCurrentUser(User user) {  
-        currentUser = user;
+        currentUser=server.find(User.class).where().like("name", user.getName()).findUnique();
+//        System.out.println(currentUser.getName()+"::"+currentUser.getId());
+              
     }
     @Override
     public void createUser(String name) {
