@@ -2,8 +2,8 @@ package komento;
 
 import database.Datamapper;
 import java.util.List;
-import model.Rating;
-import model.User;
+import domain.Rating;
+import domain.User;
 
 /* @author mhaanran */
 public class ListRatings implements Komento{

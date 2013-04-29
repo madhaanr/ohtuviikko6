@@ -2,10 +2,10 @@ package olutopas;
 
 import database.Datamapper;
 import database.EbeanSqliteDatamapper;
-import model.Beer;
-import model.Brewery;
-import model.Rating;
-import model.User;
+import domain.Beer;
+import domain.Brewery;
+import domain.Rating;
+import domain.User;
 
 public class Main {
 

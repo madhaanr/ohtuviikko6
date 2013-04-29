@@ -3,15 +3,14 @@ package olutopas;
 import com.avaje.ebean.EbeanServer;
 import database.Datamapper;
 import database.EbeanSqliteDatamapper;
-import java.util.List;
+import domain.Beer;
+import domain.Brewery;
+import domain.User;
 import java.util.Scanner;
 import javax.persistence.OptimisticLockException;
 import komento.Komento;
 import komento.Komentotehdas;
 import komento.Login;
-import model.Beer;
-import model.Brewery;
-import model.User;
 
 public class Application {
 
@@ -22,9 +21,6 @@ public class Application {
     private User user;
     private Datamapper mapper;
 
-//    public Application(EbeanServer server) {
-//        this.server = server;
-//    }
     public Application(Datamapper mapper) {
         this.mapper=mapper;
         this.server = ((EbeanSqliteDatamapper)mapper).getServer();

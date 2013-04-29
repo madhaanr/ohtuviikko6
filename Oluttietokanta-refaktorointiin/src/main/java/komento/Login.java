@@ -3,7 +3,7 @@ package komento;
 import database.Datamapper;
 import java.util.List;
 import java.util.Scanner;
-import model.User;
+import domain.User;
 
 /* @author mhaanran */
 public class Login {

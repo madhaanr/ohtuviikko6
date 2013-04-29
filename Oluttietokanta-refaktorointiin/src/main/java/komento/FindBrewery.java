@@ -2,8 +2,8 @@ package komento;
 
 import database.Datamapper;
 import java.util.Scanner;
-import model.Beer;
-import model.Brewery;
+import domain.Beer;
+import domain.Brewery;
 
 /* @author mhaanran */
 public class FindBrewery implements Komento {

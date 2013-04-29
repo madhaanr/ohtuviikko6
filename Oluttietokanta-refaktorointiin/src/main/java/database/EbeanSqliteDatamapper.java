@@ -7,10 +7,10 @@ import com.avaje.ebean.config.DataSourceConfig;
 import com.avaje.ebean.config.ServerConfig;
 import com.avaje.ebean.config.dbplatform.SQLitePlatform;
 import java.util.List;
-import model.Beer;
-import model.Brewery;
-import model.Rating;
-import model.User;
+import domain.Beer;
+import domain.Brewery;
+import domain.Rating;
+import domain.User;
 
 /* @author mhaanran */
 public class EbeanSqliteDatamapper implements Datamapper {
