@@ -18,6 +18,7 @@ public class Komentotehdas {
         komennot.put("6",new AddBrewery(mapper));
         komennot.put("7",new ListRatings(mapper));
         komennot.put("8",new ListUsers(mapper));
+        komennot.put("9",new Logout());
     }
 
     public Komento hae(String command) {

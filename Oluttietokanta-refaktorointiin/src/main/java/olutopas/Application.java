@@ -51,19 +51,11 @@ public class Application {
             if(komento!=null) {
                 komento.suorita();
                 continue;
-            }
-            
-            if (command.equals("9")) {
-                break;
-            } else {
+            }  
+            else {
                 System.out.println("unknown command");
             }
-
-            System.out.print("\npress enter to continue");
-            scanner.nextLine();
         }
-
-        System.out.println("bye");
     }
 
     private void menu() {
